@@ -1,1 +1,26 @@
+# ETL Pipeline Configuration
 
+source:
+  type: csv  # csv, api, database
+  path: data/input.csv
+  
+database:
+  host: localhost
+  port: 5432
+  name: mydb
+  user: postgres
+  password: ${DB_PASSWORD}  # Use environment variable
+  
+pipeline:
+  batch_size: 1000
+  validate_data: true
+  log_level: INFO
+  
+notifications:
+  email:
+    enabled: false
+    to: admin@example.com
+    smtp_host: smtp.gmail.com
+    smtp_port: 587
+    smtp_user: ${SMTP_USER}
+    smtp_password: ${SMTP_PASSWORD}
